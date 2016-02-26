@@ -1,4 +1,10 @@
-var express = require('express');
+var express = require('express'),
+    mongoose = require('mongoose');
+
+//var db = mongoose.connect('mongodb://<<user>>:<<password>>@ds049181.mlab.com:49181/sample');
+var db = mongoose.connect('mongodb://localhost/test');
+var Zip = require('./Zip');
+
 var app = express();
 
 var port = process.env.PORT || 3000;
@@ -7,12 +13,16 @@ var router = express.Router();
 
 router.route('/zips')
   .get((req, res) => {
-    res.json({"_id":35005, "city": "ADAMSVILLE"});
+    Zip.find({}, (err, zips) => {
+      res.json(zips);
+    }).limit(5);
   });
 
 router.route('/zips/:zipId')
   .get((req, res) => {
-    res.json({"_id": req.params.zipId, "city": "ADAMSVILLE"});
+    Zip.findOne({"_id" : req.params.zipId}, (err, zip) => {
+      res.json(zip);
+    });
   });
 
 app.get('/', (req,res) => {
