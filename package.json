@@ -4,6 +4,7 @@
   "description": "API of Zips of USA",
   "main": "app.js",
   "scripts": {
+    "start" : "nodemon app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/robsongomes/zips/issues"
   },
-  "homepage": "https://github.com/robsongomes/zips#readme"
+  "homepage": "https://github.com/robsongomes/zips#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
 }
