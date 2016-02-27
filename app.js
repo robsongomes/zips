@@ -1,5 +1,6 @@
 var express = require('express'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    bodyParser = require('body-parser');
 
 //var db = mongoose.connect('mongodb://<<user>>:<<password>>@ds049181.mlab.com:49181/sample');
 var db = mongoose.connect('mongodb://localhost/test');
@@ -13,7 +14,15 @@ var router = express.Router();
 
 router.route('/zips')
   .get((req, res) => {
-    Zip.find({}, (err, zips) => {
+    var query = {};
+
+    for (var param in req.query) {
+      if (Zip.schema.paths.hasOwnProperty(param)) {
+        query[param] = req.query[param];
+      }
+    }
+
+    Zip.find(query, (err, zips) => {
       res.json(zips);
     }).limit(5);
   });
