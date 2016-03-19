@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <h4>Total of {{zipIndexCtrl.zips.length}} zips returned</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>city</th>
+                    <th>pop</th>
+                    <th>state</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="zip in zipIndexCtrl.zips">
+                <tr>
+                    <td>{{zip._id}}</td>
+                    <td>{{zip.city}}</td>
+                    <td>{{zip.pop}}</td>
+                    <td>{{zip.state}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
